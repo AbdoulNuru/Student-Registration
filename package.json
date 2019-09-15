@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon --exec babel-node app.js",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "test": "mocha --require @babel/register --exit"
   },
   "repository": {
@@ -34,6 +35,7 @@
     "istanbul": "^0.4.5",
     "mocha": "^6.2.0",
     "mocha-lcov-reporter": "^1.3.0",
-    "nodemon": "^1.19.2"
+    "nodemon": "^1.19.2",
+    "nyc": "^14.1.1"
   }
 }
