@@ -125,11 +125,6 @@ class studentController {
                 });
             }
         });
-
-        return res.status(400).json({
-            success: 'false',
-            message: 'no student found by that id'
-        });
     }
 }
 

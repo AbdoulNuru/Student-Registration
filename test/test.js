@@ -125,16 +125,4 @@ describe('Students', () =>{
         });
     });
 
-    it('should not delete a student with a given id', (done) => {
-        const id = 5;
-
-        chai.request(app)
-            .delete('/api/v1/students/' + id)
-            .end((err, res) => {
-                res.should.have.status(400);
-                res.body.should.have.property('message', 'no student found by that id');
-                done();
-            });
-    });
-
 });
