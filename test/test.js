@@ -74,6 +74,45 @@ describe('Students', () =>{
         });
     });
 
+    it('should not update a student with a given id', (done) => {
+        const id = 5;
+
+        chai.request(app)
+            .put('/api/v1/students/' + id)
+            .send({ id: id, name: 'Seth', faculty: 'software engineering', marks: 16 })
+            .end((err, res) => {
+                res.should.have.status(400);
+                res.body.should.have.property('message', 'No student found by that id');
+                done();
+            });
+    });
+
+    it('should not update a student with a given id2', (done) => {
+        const id = 3;
+
+        chai.request(app)
+            .put('/api/v1/students/' + id)
+            .send({ id: id, faculty: 'software engineering', marks: 16 })
+            .end((err, res) => {
+                res.should.have.status(400);
+                res.body.should.have.property('message', 'student name is required');
+                done();
+            });
+    });
+
+    it('should not update a student with a given id3', (done) => {
+        const id = 3;
+
+        chai.request(app)
+            .put('/api/v1/students/' + id)
+            .send({ id: id, name: 'Seth',marks: 16 })
+            .end((err, res) => {
+                res.should.have.status(400);
+                res.body.should.have.property('message', 'student faculty is required');
+                done();
+            });
+    });
+
     it('should delete a student with a given id', (done)=>{
         const id = 3;
 
@@ -85,4 +124,17 @@ describe('Students', () =>{
         done();    
         });
     });
+
+    it('should not delete a student with a given id', (done) => {
+        const id = 5;
+
+        chai.request(app)
+            .delete('/api/v1/students/' + id)
+            .end((err, res) => {
+                res.should.have.status(400);
+                res.body.should.have.property('message', 'no student found by that id');
+                done();
+            });
+    });
+
 });

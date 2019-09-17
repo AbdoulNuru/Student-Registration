@@ -123,12 +123,12 @@ class studentController {
                     success: 'true',
                     message: 'Student record deleted'
                 });
-            }else if(!student.id === id){
-                return res.status(400).json({
-                    success: 'false',
-                    message: 'no student found by that id'
-                });
             }
+        });
+
+        return res.status(400).json({
+            success: 'false',
+            message: 'no student found by that id'
         });
     }
 }
