@@ -1,7 +1,7 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../app';
-import students from '../db/dummy';
+import students from '../../db/dummy';
 
 chai.should();
 chai.use(chaiHttp);
@@ -58,6 +58,17 @@ describe('Students', () =>{
         done();    
         });
 
+    });
+
+    it('should not create a student record', (done) =>{
+        chai.request(app)
+        .post('/api/v1/students')
+        .send({id: 5, name: 'Db', faculty: 'Soft'})
+        .end((err, res)=>{
+            res.should.have.status(400);
+            res.body.should.have.property('message', 'student marks are required');
+        done();    
+        });
     });
 
     it('should update a student with a given id', (done) =>{
